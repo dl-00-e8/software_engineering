@@ -44,7 +44,7 @@ class StudentManagerTest {
 	void testDuplicate() {
 		// given
 		String studentName = "test";
-//		studentManager.addStudent(studentName);
+		studentManager.addStudent(studentName);
 		
 		// when & then
 		assertThrows(IllegalArgumentException.class,() -> {
@@ -56,7 +56,7 @@ class StudentManagerTest {
 	void testNotfound() {
 		// given
 		String studentName = "test";
-		studentManager.addStudent(studentName);
+//		studentManager.addStudent(studentName);
 		
 		// when
 		assertThrows(IllegalArgumentException.class,() -> {
