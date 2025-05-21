@@ -83,7 +83,7 @@ pipeline {
 
                     View more at: ${env.BUILD_URL}
                 """,
-                to: 'sso07012@g.hongik.ac.kr, gud5223@gmail.com',
+                to: 'sso07012@gmail.com, gud5223@gmail.com',
                 attachmentsPattern: "sources.txt"
             )
         }
