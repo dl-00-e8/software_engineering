@@ -34,6 +34,7 @@ pipeline {
                     cd test
                     find src -name "*.java" > sources.txt
                     javac -encoding UTF-8 -d ../${CLASS_DIR} -cp ../${JUNIT_JAR_PATH} @sources.txt
+            		cp sources.txt ../sources.txt
                 '''
             }
         }
@@ -69,6 +70,22 @@ pipeline {
 
         success {
             echo "Build and test succeeded!"
+            
+            // 이메일 전송
+            emailext(
+                subject: "✅ Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                    Hello,
+
+                    The build for job ${env.JOB_NAME} #${env.BUILD_NUMBER} was successful.
+
+                    Please find the attached result file.
+
+                    View more at: ${env.BUILD_URL}
+                """,
+                to: 'sso07012@g.hongik.ac.kr, gud5223@gmail.com',
+                attachmentsPattern: "sources.txt"
+            )
         }
     }
 }
